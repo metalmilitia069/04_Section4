@@ -42,13 +42,20 @@ private:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	UPROPERTY(EditAnywhere, Category = Setup)
+	// UClass* ProjectileBlueprint; // There is an alternative to use this. Look at unreal documentation. This option makes ALL UNREAL CLASS available for choose at the new property bar
+	TSubclassOf<AProjectile> ProjectileBlueprinto;
+
 	UPROPERTY(EditAnywhere, Category = Firing)
 	float LaunchSpeed = 4000; // ?? m/s
 
-	UPROPERTY(EditAnywhere, Category = Setup)
-		// UClass* ProjectileBlueprint; // There is an alternative to use this. Look at unreal documentation. This option makes ALL UNREAL CLASS available for choose at the new property bar
-	TSubclassOf<AProjectile> ProjectileBlueprinto;
+	UPROPERTY(EditAnywhere, Category = Firing)
+	float ReloadTimeInSeconds = 3.f;
 
+	
 	UTankBarrel* Barrel = nullptr; // Local Barrel Reference for spawning projectile
+
+	
+	double LastFireTime = 0;
 
 };
