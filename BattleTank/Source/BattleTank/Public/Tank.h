@@ -10,6 +10,7 @@
 //class UTankTurret;
 class UTankBarrel;
 class UTankAimingComponent;
+class AProjectile;
 
 UCLASS()
 class BATTLETANK_API ATank : public APawn
@@ -28,7 +29,7 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = Firing)
 	void Fire();
-	
+		
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -43,4 +44,11 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = Firing)
 	float LaunchSpeed = 4000; // ?? m/s
+
+	UPROPERTY(EditAnywhere, Category = Setup)
+		// UClass* ProjectileBlueprint; // There is an alternative to use this. Look at unreal documentation. This option makes ALL UNREAL CLASS available for choose at the new property bar
+	TSubclassOf<AProjectile> ProjectileBlueprinto;
+
+	UTankBarrel* Barrel = nullptr; // Local Barrel Reference for spawning projectile
+
 };
